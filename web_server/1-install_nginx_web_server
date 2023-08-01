@@ -13,4 +13,4 @@ printf %s "server {
 }
 " > /etc/nginx/sites-available/default
 
-sudo service ssh restart
+sudo service nginx restart
