@@ -7,8 +7,8 @@ echo 'ENABLED=1' | sudo tee -a /etc/default/haproxy
 
 printf %s "backend web-backend
         balance roundrobin
-        server 4799-web-01 34.203.28.29:80 check
-        server 4799-web-02 34.224.214.248:80 check
+        server 5686-web-01 3.94.193.31:80 check
+        server 5686-web-02 54.221.181.203:80 check
 
 frontend http
         bind *:80
