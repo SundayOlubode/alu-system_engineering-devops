@@ -10,6 +10,7 @@ sudo echo "Holberton School" > /var/www/html/index.html
 echo "Ceci n'est pas une page" > | sudo tee /var/www/html/404-page.html
 
 printf %s "server {
+
         listen 80 default_server;
         listen [::]:80 default_server;
 
