@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# comment
-sudo apt-get update -y
-sudo apt-get install haproxy -y
-echo 'ENABLED=1' | sudo tee -a /etc/default/haproxy
-printf %s 'backend web-backend
-        balance roundrobin
-        server 4799-web-01 34.203.28.29:80 check
-        server 4799-web-02 34.224.214.248:80 check
+# Install the load balancer
 
-frontend http
-        bind *:80
-        mode http
-        default_backend web-backend
-' | sudo tee -a /etc/haproxy/haproxy.cfg
-sudo service haproxy restart
+# Update software packages
+sudo apt-get -y update && sudo apt-get -y upgrade
+
+# Install haproxy
+sudo apt-get -y install haproxy
+
+# Setup a proxy
+sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+sudo sed -i "$ a\listen 5639-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 5639-web-02 54.221.181.203 check\n\tserver 5686-web-01 3.94.193.31 check" /etc/haproxy/haproxy.cfg
+
+# Start the proxy
+sudo service haproxy start
