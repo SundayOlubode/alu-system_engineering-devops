@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-#return a page
+# Restart apache2 web server
 sudo service apache2 restart
