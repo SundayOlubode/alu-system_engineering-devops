@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# you go explain tire no evidnce, Sam
+sudo -u "$1" whoami
